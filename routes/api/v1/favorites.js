@@ -20,7 +20,7 @@ router.post('/', (request, response) => {
       response.status(200).json({'message': `${request.body.location} has been added to your favorites`});
     })
     .catch((error) => {
-      response.status(500).json({ error });
+      response.status(401).json("you are unauthorized to view this content");
     });
 });
 
