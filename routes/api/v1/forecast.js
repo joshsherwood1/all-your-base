@@ -7,6 +7,9 @@ const configuration = require('../../../knexfile')[environment];
 const database = require('knex')(configuration);
 const rp = require('request-promise');
 
+let latitude;
+let longitude;
+
 router.get('/', (request, response) => {
   var options = {
       uri: 'https://maps.googleapis.com/maps/api/geocode/json',
@@ -18,8 +21,8 @@ router.get('/', (request, response) => {
   };
 
 rp(options).then(body => {
-    var latitude = body.results[0].geometry.location.lat;
-    var longitude = body.results[0].geometry.location.lng;
+    latitude = body.results[0].geometry.location.lat;
+    longitude = body.results[0].geometry.location.lng;
 
     var options2 = {
         uri: `https://api.darksky.net/forecast/${process.env.DARK_SKY_API_KEY}/${latitude},${longitude}?exclude=minutely`,
