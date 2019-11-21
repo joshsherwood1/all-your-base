@@ -117,4 +117,16 @@ rp(options).then(body => {
 //     });
 // });
 
+router.delete('/', (request, response) => {
+  console.log(request.body)
+  database('users').where('api_key', request.body.api_key).then(user => {
+    return database('favorites').where('city', request.body.location).del()
+  }).then(() => {
+      response.status(204).json("status: 204");
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
 module.exports = router;
