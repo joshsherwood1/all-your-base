@@ -99,7 +99,7 @@ rp(options).then(body => {
       response.status(200).json(jsonResponse);
     })
     .catch((error) => {
-      response.status(500).json({ error });
+      response.status(401).json("you are unauthorized to view this content");
     });
 });
 
