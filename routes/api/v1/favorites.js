@@ -8,39 +8,50 @@ const database = require('knex')(configuration);
 const rp = require('request-promise');
 var favorites_array;
 var jsonResponse = [];
-var officialResponse;
 
 let latitude;
 let longitude;
 
+// router.post('/', (request, response) => {
+//   database('users').where('api_key', request.body.api_key).then(user => {
+//     return database('favorites').insert({city: request.body.location, user_id: user[0].id})
+//   }).then(() => {
+//       response.status(200).json({'message': `${request.body.location} has been added to your favorites`});
+//     })
+//     .catch((error) => {
+//       response.status(401).json("you are unauthorized to view this content");
+//     });
+// });
+
 router.post('/', (request, response) => {
   database('users').where('api_key', request.body.api_key).then(user => {
-    return database('favorites').insert({city: request.body.location, user_id: user[0].id})
-  }).then(() => {
-      response.status(200).json({'message': `${request.body.location} has been added to your favorites`});
-    })
-    .catch((error) => {
-      response.status(401).json("you are unauthorized to view this content");
-    });
+    if (user[0].api_key === request.body.api_key) {
+    database('favorites').insert({city: request.body.location, user_id: user[0].id}).then(() => {
+    response.status(200).json({'message': `${request.body.location} has been added to your favorites`});
+  }).catch((error) => {
+    response.status(500).json({ error });
+  });
+  }
+}).catch((error) => {
+  response.status(401).json("you are unauthorized");
+});
 });
 
+
+
 router.get('/', (request, response) => {
-  // console.log(request.body.api_key)
   database('users').where('api_key', request.body.api_key)
 
 ////////////////////////////////////////////////////////////////////////////////
   .then(user => {
-    // console.log(user[0].id)
     return database('favorites').where( 'user_id', user[0].id)
   })
 
 ////////////////////////////////////////////////////////////////////////////////
   .then((favorites) => {
     favorites_array = favorites.map(function (favorite_object) {
-    console.log(favorite_object.city)
     return favorite_object.city
 });
-console.log(favorites_array)
 return(favorites_array)
 })
 
@@ -87,15 +98,11 @@ rp(options).then(body => {
       delete weatherHash.currently.uvIndex
       delete weatherHash.currently.ozone
       jsonResponse.push(weatherHash)
-      console.log(jsonResponse)
 
       // response.status(200).json(jsonResponse);
     });
   });
 })
-    console.log(jsonResponse)
-    console.log("Am I getting here?")
-    console.log(officialResponse)
       response.status(200).json(jsonResponse);
     })
     .catch((error) => {
@@ -117,16 +124,34 @@ rp(options).then(body => {
 //     });
 // });
 
+// router.delete('/', (request, response) => {
+//   console.log(request.body)
+//   database('users').where('api_key', request.body.api_key).then(user => {
+//     if (user.api_key === request.body.api_key) {
+//     database('favorites').where('city', request.body.location).del().then(() =>
+//     response.status(204).json("status: 204");
+//     ).catch((error) => {
+//       response.status(500).json({ error });
+//     });
+//     });
+//   } else { return response.status(401).json("you are unauthorized to view this content");}
+//     // .catch((error) => {
+//     //   response.status(500).json({ error });
+//     });
+// });
+
 router.delete('/', (request, response) => {
-  console.log(request.body)
   database('users').where('api_key', request.body.api_key).then(user => {
-    return database('favorites').where('city', request.body.location).del()
-  }).then(() => {
-      response.status(204).json("status: 204");
-    })
-    .catch((error) => {
-      response.status(500).json({ error });
-    });
+    if (user[0].api_key === request.body.api_key) {
+    database('favorites').where('city', request.body.location).del().then(() => {
+    response.status(204).json("status: 204");
+  }).catch((error) => {
+    response.status(500).json({ error });
+  });
+  }
+}).catch((error) => {
+  response.status(401).json("you are unauthorized");
+});
 });
 
 module.exports = router;
