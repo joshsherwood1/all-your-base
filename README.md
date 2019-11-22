@@ -4,12 +4,6 @@ The name of this application is Express Sweater Weather. The application allows 
 
 Part of this application [was initally made with Ruby on Rails](https://github.com/joshsherwood1/sweater_weather). The goal of this project was to recreate parts of the application using an Express framework instead. 
 
-## Try it in Postman
-
-To access all four endpoints using Postman, click on the 'Run in Postman' button below.
-
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d) 
-
 ## Initial Setup
 
 First, run:
@@ -50,7 +44,9 @@ Then run the command:
 
 The application is hosted here: https://sweater-weather-javascript.herokuapp.com/
 
-Use the Postman button above to easily access the four endpoints with postman.
+Access all four endpoint using Postman by clicking the button below:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d) 
 
 If you would like to access the four enpoints using a local server, then you will will need the following information to format each request:
 
