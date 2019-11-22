@@ -23,9 +23,9 @@ router.post('/', (request, response) => {
     response.status(500).json({ error });
   });
   }
-}).catch((error) => {
-  response.status(401).json("you are unauthorized");
-});
+  }).catch((error) => {
+    response.status(401).json("you are unauthorized");
+  });
 });
 
 
@@ -63,8 +63,8 @@ router.get('/', (request, response) => {
       };
     rp(options2)
     .then(body2 => {
-      var forecast_hash = new Favorites();
-      jsonResponse.push(forecast_hash.format_json_response(city, body2))
+      var forecast_response = new Favorites();
+      jsonResponse.push(forecast_response.format_json_response(city, body2))
       console.log(jsonResponse)
       });
     });

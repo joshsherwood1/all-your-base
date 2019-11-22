@@ -6,6 +6,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../../../knexfile')[environment];
 const database = require('knex')(configuration);
 const rp = require('request-promise');
+var Forecast = require('../../../models/forecast');
 
 let latitude;
 let longitude;
@@ -32,58 +33,17 @@ rp(options).then(body => {
     };
 
     rp(options2).then(body2 => {
-      var jsonResponse = {}
-      jsonResponse["location"] = request.query.location;
-      jsonResponse["currently"] = body2.currently
-      jsonResponse["hourly"] = body2.hourly
-      jsonResponse["daily"] = body2.daily
-
-      delete jsonResponse.currently.time
-      delete jsonResponse.currently.nearestStormDistance
-      delete jsonResponse.currently.nearestStormBearing
-      delete jsonResponse.currently.apparentTemperature
-      delete jsonResponse.currently.dewPoint
-      delete jsonResponse.currently.uvIndex
-      delete jsonResponse.currently.ozone
-
-      jsonResponse.hourly.data.forEach((hash) => {
-        delete hash.precipType;
-        delete hash.apparentTemperature;
-        delete hash.dewPoint;
-        delete hash.uvIndex;
-        delete hash.ozone;
-      });
-
-      jsonResponse.daily.data.forEach((hash) => {
-        delete hash.moonPhase;
-        delete hash.temperatureHighTime;
-        delete hash.temperatureLowTime;
-        delete hash.apparentTemperatureHigh;
-        delete hash.apparentTemperatureHighTime;
-        delete hash.apparentTemperatureLow;
-        delete hash.apparentTemperatureLowTime;
-        delete hash.dewPoint;
-        delete hash.windGustTime;
-        delete hash.windBearing;
-        delete hash.uvIndex;
-        delete hash.uvIndexTime;
-        delete hash.ozone;
-        delete hash.temperatureMinTime;
-        delete hash.temperatureMaxTime;
-        delete hash.apparentTemperatureMax;
-        delete hash.apparentTemperatureMaxTime;
-        delete hash.apparentTemperatureMin;
-        delete hash.apparentTemperatureMinTime;
-        delete hash.precipAccumulation;
-      });
+      var forecast = new Forecast();
+      console.log(forecast.format_json_response(request.query.location, body2))
+      var jsonResponse = forecast.format_json_response(request.query.location, body2)
         response.status(200).json(jsonResponse)
     }).catch(err => {
         response.status(500).json({ error });
     });
   });
-}).catch(error => {
-    response.status(401).json("you are unauthorized");
-});
+  }).catch(error => {
+      response.status(401).json("you are unauthorized");
+  });
 });
 
 module.exports = router;
