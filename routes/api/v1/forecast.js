@@ -11,6 +11,8 @@ let latitude;
 let longitude;
 
 router.get('/', (request, response) => {
+  database('users').where('api_key', request.body.api_key).then(user => {
+    if (user[0].api_key != request.body.api_key) { return response.status(401).json("you are unauthorized");}
   var options = {
       uri: 'https://maps.googleapis.com/maps/api/geocode/json',
       qs: {
@@ -76,10 +78,11 @@ rp(options).then(body => {
       });
         response.status(200).json(jsonResponse)
     }).catch(err => {
-        console.log(err);
+        response.status(500).json({ error });
     });
-}).catch(err => {
-    console.log(err);
+  });
+}).catch(error => {
+    response.status(401).json("you are unauthorized");
 });
 });
 
