@@ -44,7 +44,7 @@ Then run the command:
 
 The application is hosted here on Heroku: https://sweater-weather-javascript.herokuapp.com/
 
-Access all four endpoint using Postman by clicking the button below:
+Access all four endpoint responses using Postman by clicking the button below:
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d) 
 
