@@ -6,8 +6,6 @@ Part of this application [was initally made with Ruby on Rails](https://github.c
 
 ## Try it in Postman
 
-The application is hosted here: https://sweater-weather-javascript.herokuapp.com/
-
 To access all four endpoints using Postman, click on the 'Run in Postman' button below.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d) 
@@ -49,6 +47,61 @@ Then run the command:
 
 
 ## How to Use
+
+The application is hosted here: https://sweater-weather-javascript.herokuapp.com/
+
+Use the Postman button above to easily access the four endpoints with postman.
+
+If you would like to access the four enpoints using a local server, then you will will need the following information to format each request:
+
+```
+GET /api/v1/forecast?location=denver,co
+Content-Type: application/json
+Accept: application/json
+
+body:
+{
+  "api_key": "878uahfa8y89aydf89yas98fyas9h"
+}
+```
+
+```
+POST /api/v1/favorites
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "location": "London, UK",
+  "api_key": "878uahfa8y89aydf89yas98fyas9h"
+}
+```
+
+```
+GET /api/v1/favorites
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "api_key": "878uahfa8y89aydf89yas98fyas9h"
+}
+```
+
+```
+DELETE /api/v1/favorites
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "location": "London, UK",
+  "api_key": "878uahfa8y89aydf89yas98fyas9h"
+}
+```
 
 ## Schema Design
 
