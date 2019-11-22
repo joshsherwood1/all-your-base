@@ -113,4 +113,4 @@ Database: Postgres & Knex
 
 Joshua Sherwood
 
-![image](https://user-images.githubusercontent.com/49769068/69402622-a11f0500-0cb5-11ea-865e-13c0ba4e5c3b.png)
+![image](https://user-images.githubusercontent.com/49769068/69402656-c01d9700-0cb5-11ea-83f8-c017a8ffa696.png)
