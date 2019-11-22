@@ -10,7 +10,7 @@ The application is hosted here: https://sweater-weather-javascript.herokuapp.com
 
 To access the endpoints using Postman, click on the boxes below.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5f110073b236340d109d) 
 
 ## Initial Setup
 
