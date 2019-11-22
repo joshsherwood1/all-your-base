@@ -14,7 +14,12 @@ To access all four endpoints using Postman, click on the 'Run in Postman' button
 
 ## Initial Setup
 
+First, run:
+
+`npm install`
+
 Instructions to create database, run migrations, and seed: 
+
 ```
 psql
 CREATE DATABASE sweater_weather_dev;
