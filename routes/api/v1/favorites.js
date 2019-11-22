@@ -8,6 +8,7 @@ const database = require('knex')(configuration);
 const rp = require('request-promise');
 var favorites_array;
 var jsonResponse = [];
+var Favorites = require('../../../models/favorites');
 
 let latitude;
 let longitude;
@@ -86,20 +87,9 @@ rp(options).then(body => {
 
 ////////////////////////////////////////////////////////////////////////////////
     .then(body2 => {
-      var weatherHash = {}
-      weatherHash["location"] = city;
-      weatherHash["currently"] = body2.currently
-
-      delete weatherHash.currently.time
-      delete weatherHash.currently.nearestStormDistance
-      delete weatherHash.currently.nearestStormBearing
-      delete weatherHash.currently.apparentTemperature
-      delete weatherHash.currently.dewPoint
-      delete weatherHash.currently.uvIndex
-      delete weatherHash.currently.ozone
-      jsonResponse.push(weatherHash)
-
-      // response.status(200).json(jsonResponse);
+      var forecast_hash = new Favorites();
+      jsonResponse.push(forecast_hash.format_json_response(city, body2))
+      console.log(jsonResponse)
     });
   });
 })
