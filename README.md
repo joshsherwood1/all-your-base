@@ -50,6 +50,10 @@ Access all four endpoint using Postman by clicking the button below:
 
 If you would like to access the four enpoints using a local server, then you will will need the following information to format each request:
 
+### Endpoint 1
+
+----
+
 ```
 GET /api/v1/forecast?location=denver,co
 Content-Type: application/json
@@ -60,6 +64,10 @@ body:
   "api_key": "878uahfa8y89aydf89yas98fyas9h"
 }
 ```
+### Endpoint 2
+
+----
+
 
 ```
 POST /api/v1/favorites
@@ -73,6 +81,10 @@ body:
   "api_key": "878uahfa8y89aydf89yas98fyas9h"
 }
 ```
+### Endpoint 3
+
+----
+
 
 ```
 GET /api/v1/favorites
@@ -85,6 +97,9 @@ body:
   "api_key": "878uahfa8y89aydf89yas98fyas9h"
 }
 ```
+### Endpoint 4
+
+----
 
 ```
 DELETE /api/v1/favorites
@@ -106,6 +121,7 @@ body:
 ## Tech Stack List
 
 Node.js v10.16.3
+
 Database: Postgres & Knex
 
 
