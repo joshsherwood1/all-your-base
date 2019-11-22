@@ -14,7 +14,34 @@ To access all four endpoints using Postman, click on the 'Run in Postman' button
 
 ## Initial Setup
 
-## How to Run Tests
+Instructions to create database, run migrations, and seed: 
+```
+psql
+CREATE DATABASE sweater_weather_dev;
+\q
+
+knex migrate:latest
+knex seed:run
+```
+If you want to name the database differently, be sure to update knexfile.js accordingly,
+
+## Running your tests
+
+First, set up your test database.
+
+```
+psql
+CREATE DATABASE sweater_weather_dev_test;
+\q
+
+knex migrate:latest --env test
+```
+
+Then run the command: 
+
+`npm test`
+
+
 
 ## How to Use
 
