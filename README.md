@@ -52,6 +52,8 @@ Then run the command:
 
 ## Schema Design
 
+![image](https://user-images.githubusercontent.com/49769068/69401316-fc4ef880-0cb1-11ea-983c-bd081e2a288a.png)
+
 ## Tech Stack List
 
 ## Core Contributors
