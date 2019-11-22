@@ -42,7 +42,7 @@ Then run the command:
 
 ## How to Use
 
-The application is hosted here: https://sweater-weather-javascript.herokuapp.com/
+The application is hosted here on Heroku: https://sweater-weather-javascript.herokuapp.com/
 
 Access all four endpoint using Postman by clicking the button below:
 
@@ -105,4 +105,12 @@ body:
 
 ## Tech Stack List
 
+Node.js v10.16.3
+Database: Postgres & Knex
+
+
 ## Core Contributors
+
+Joshua Sherwood
+
+![image](https://user-images.githubusercontent.com/49769068/69402622-a11f0500-0cb5-11ea-865e-13c0ba4e5c3b.png)
